@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,10 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UserController::class,'listAllUsers'])->name('routeListAllUsers');
+Route::get('/users/{uid}', [UserController::class,'listUser'])->name('routeListAllUser');
 Route::get('/createUser', [UserController::class,'createUser'])->name('routeCreateUser');
-Route::get('/profile', [UserController::class,'showProfile'])->name('routeshowProfile');
+Route::get('/profile', [UserController::class,'showProfile'])->name('routeShowProfile');
+#Route::get('/userLogin', [AuthController::class,'loginUser'])->name('routeLogin');
+Route::match (['get', 'post'], '/userLogin', [AuthController::class, 'loginUser'])->name('routeLogin');
 
 
