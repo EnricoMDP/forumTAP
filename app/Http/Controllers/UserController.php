@@ -10,13 +10,26 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function listAllUsers() {
-
         $users = User::all(); // Busca todos os usuários
         return view('users.listAllUsers', ['users' => $users]); // Retorna a view com os dados dos usuários
     }
 
-    public function listUserById(Request $request,$id) {
-        return view('users.find');
+    public function listUserById(Request $request,$uid) {
+        $user = User::where('id', $uid)->first();
+        return view('users.profile', ['user' => $user]);
+        // return view('users.find');
+    }
+
+    public function updateUser(Request $request, $uid) {
+        $user = User::where('id', $uid)->first();
+        $user->name = $request-> name;
+        $user->email = $request-> email;
+        if($request -> password != '') {
+            $user ->password = Hash::make($request->password);
+        }
+        $user->save();
+        return redirect()->route('ListUserById', [$user->id])
+            ->with('message', 'Atualizado com sucesso!');
     }
 
     

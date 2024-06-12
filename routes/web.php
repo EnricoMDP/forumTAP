@@ -14,18 +14,22 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('Login');
 
-Route::match(['get', 'post'], '/register', [UserController::class, 'register'])->name('register');
+Route::match(['get', 'post'], '/register', [UserController::class, 'register'])->name('Register');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('Logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/users', [UserController::class, 'listAllUsers'])->name('listAllUsers');
+    Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
 
-    Route::get('/users/{id}', [UserController::class, 'listUserById'])->name('listUserById');
+    Route::get('/users/{id}', [UserController::class, 'listUserById'])->name('ListUserById');
 
-    Route::get('/users/id/edit', [UserController::class, 'editUser'])->name('editUser');
+    Route::put('/users/{id}/update', [UserController::class, 'updateUser'])->name('UpdateUser');
 
-    Route::get('/users/id/delete', [UserController::class, 'deleteUser'])->name('deleteUser');
+    Route::delete('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('DeleteUser');
+
+    Route::get('/users/id/edit', [UserController::class, 'editUser'])->name('EditUser');
+
+    Route::get('/users/id/delete', [UserController::class, 'deleteUser'])->name('DeleteUser');
 });

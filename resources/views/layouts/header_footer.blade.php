@@ -34,10 +34,10 @@
             </div>
             <div class="offcanvas-body">
                 <div class="flex-column linha-sidebar">
-                    <a class="active" href="{{ route('listAllUsers') }}">Início</a>
+                    <a class="active" href="{{ route('ListAllUsers') }}">Início</a>
                 </div>
                 <div class="flex-column linha-sidebar">
-                    <a href="{{ route('register') }}">Criar Usuário</a>
+                    <a href="{{ route('Register') }}">Criar Usuário</a>
                 </div>
                 <div class="flex-column linha-sidebar">
                     
@@ -50,10 +50,10 @@
                     <a href="{{ url('users/id/delete') }}">Deletar Usuário</a>
                 </div>
                 <div class="flex-column linha-sidebar">
-                    <a href="{{ route('login') }}">Logar</a>
+                    <a href="{{ route('Login') }}">Logar</a>
                 </div>
                 <div class="flex-column linha-sidebar">
-                    <a href="{{ route('logout') }}">Sair</a>
+                    <a href="{{ route('Logout') }}">Sair</a>
                 </div>
             </div>
         </div>
