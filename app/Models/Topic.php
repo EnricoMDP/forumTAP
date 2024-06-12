@@ -14,4 +14,5 @@ class Topic extends Model
         'description',
         'status'
     ];
+           
 }

@@ -1,16 +1,24 @@
-@extends('layouts.base') 
-
-@section('header', 'Listar todos os usuários')
+@extends('layouts.header_footer')
 
 @section('content')
-    <table border="1">
-        <th>
-            <td>Nome</td>
-            <td>Email</td>
-        </th>
-        <th>
-            <td>fulano</td>
-            <td>1234@gmail.com</td>
-        </th>
-    </table>
+<div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
+    <h2>Lista de Usuários</h2>
+   
+        <ul class="user-list">
+            <div class="row">
+                @foreach($users as $user)
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $user->name }}</h5>
+                            <p class="card-text">{{ $user->email }}</p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div> 
+        </ul>
+    
+</div>
 @endsection
+

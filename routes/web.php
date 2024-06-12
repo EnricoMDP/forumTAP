@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,15 +14,18 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('login');
+
+Route::match(['get', 'post'], '/register', [UserController::class, 'register'])->name('register');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [UserController::class, 'listAllUsers'])->name('listAllUsers');
+
+    Route::get('/users/{id}', [UserController::class, 'listUserById'])->name('listUserById');
+
+    Route::get('/users/id/edit', [UserController::class, 'editUser'])->name('editUser');
+
+    Route::get('/users/id/delete', [UserController::class, 'deleteUser'])->name('deleteUser');
 });
-
-Route::get('/users', [UserController::class,'listAllUsers'])->name('routeListAllUsers');
-Route::get('/users/{uid}', [UserController::class,'listUser'])->name('routeListAllUser');
-Route::get('/createUser', [UserController::class,'createUser'])->name('routeCreateUser');
-Route::get('/profile', [UserController::class,'showProfile'])->name('routeShowProfile');
-#Route::get('/userLogin', [AuthController::class,'loginUser'])->name('routeLogin');
-Route::match (['get', 'post'], '/userLogin', [AuthController::class, 'loginUser'])->name('routeLogin');
-
-

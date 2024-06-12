@@ -3,21 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function loginUser(Request $request) {
-        if ($request->method() === 'GET') {
-            return view('auth.loginPage');
+    public function login(Request $request) {
+        if ($request->method() === 'GET'){
+            return view('auth.login');
+        } else {
+            $credentials = $request->validate([
+                'email' => 'required|string|email|',
+                'password' => 'required|string'
+               ]);
+            if (Auth::attempt($credentials)){
+                return redirect()->route('listAllUsers');
+            }
+            return back()->withErrors([
+                'email' => 'Credenciais inválidas.',
+            ])->withInput();
         }
-        else {
-            $username = $request->username;
-            $password = $request->password;
-            $credentials = $request->only('username', 'password');
-            print_r($username . " - " . $password . "<br>");
-            print_r($credentials);
             
-            #Auth::atempt($credentials;)
-        }
+    }
+
+    public function logout() {
+       Auth::logout();
+       return redirect()->route('login')->with('sucess', 'Logout realizado com sucesso');
     }
 }
