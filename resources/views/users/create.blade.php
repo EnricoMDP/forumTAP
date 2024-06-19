@@ -3,7 +3,7 @@
 @section('content')
 <div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
     <h2 class="text-center">Cadastre-se</h2>
-    <form action="{{route('register')}}" method="POST" class="w-50">
+    <form action="{{route('Register')}}" method="POST" class="w-50">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Nome:</label>

@@ -51,7 +51,7 @@ public function register(Request $request) {
 
         Auth::login($user);
 
-        return redirect()->route('listAllUsers');
+        return redirect()->route('ListAllUsers');
     }
 }
 
