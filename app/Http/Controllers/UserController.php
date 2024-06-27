@@ -14,6 +14,11 @@ class UserController extends Controller
         return view('users.listAllUsers', ['users' => $users]); // Retorna a view com os dados dos usuários
     }
 
+    public function index() {
+        $user = Auth::user();
+        return view('users.home', compact('user'));
+    }
+
     public function listUserById(Request $request,$uid) {
         $user = User::where('id', $uid)->first();
         return view('users.profile', ['user' => $user]);
@@ -28,7 +33,7 @@ class UserController extends Controller
             $user ->password = Hash::make($request->password);
         }
         $user->save();
-        return redirect()->route('ListUserById', [$user->id])
+        return redirect()->route('ListAllUsers', [$user->id])
             ->with('message', 'Atualizado com sucesso!');
     }
 
@@ -59,8 +64,9 @@ public function register(Request $request) {
         return view('users.edit');
     }
 
-    public function deleteUser() {
-        return "Hello World";
+    public function deleteUser(Request $request, $id) {
+        $user = User::where('id', $id)->delete();
+        return redirect()->route('listAllUsers');
     }
     
 }

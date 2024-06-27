@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -14,14 +15,24 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Route::get("/home", [UserController::class, 'index'])->name("Home");
+
 Route::match(['get', 'post'], '/login', [AuthController::class, 'login'])->name('Login');
 
 Route::match(['get', 'post'], '/register', [UserController::class, 'register'])->name('Register');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('Logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('Logout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
+
+    Route::get("/main", [ForumController::class, 'mainForum'])->name("Main");
+
+    Route::get("/topics", [ForumController::class, 'topics'])->name("Topics");
+
+    Route::get("/posts", [ForumController::class, 'posts'])->name("Posts");
+
+    Route::get("/tags", [ForumController::class, 'tags'])->name("Tags");
 
     Route::get('/users/{id}', [UserController::class, 'listUserById'])->name('ListUserById');
 

@@ -1,23 +1,24 @@
 @extends('layouts.header_footer')
 
 @section('content')
-<div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
-    <h2 class="text-center">Login</h2>
-    <form action="{{ route('Login')}}" method="POST" class="w-50">
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<div class="container">
+    <form action="{{ route('Login')}}" method="POST" class="itemX">
+    <h3 class="item2">Login</h3>
         @csrf
-        <div class="mb-3">
+        <div class="item2">
             <label for="email" class="form-label">Email:</label>
             <input type="email" id="email" name="email" class="form-control"  value="{{ old('email') }}" required>
             @error('email') <span>{{$message}}</span> @enderror
         </div>
     
-        <div class="mb-3">
+        <div class="item3">
             <label for="password" class="form-label">Senha:</label>
             <input type="password" id="password" name="password" class="form-control">
             @error('email') <span>{{$message}}</span> @enderror
         </div>
     
-        <input type="submit" class="btn btn-primary" value="Enviar">
+        <input type="submit" class="item4 button" value="Enviar">
     </form>
 </div>
 @endsection
