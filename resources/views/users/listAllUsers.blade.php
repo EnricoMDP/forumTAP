@@ -1,17 +1,20 @@
 @extends('layouts.header_footer')
 
 @section('content')
-<div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
-    <h2>Lista de Usuários</h2>
-   
+<link rel="stylesheet" href="{{ asset('css/allUsers.css') }}">
+<div class="containerAllUsers">
         <ul class="user-list">
-            <div class="row">
+        <h2>Lista de Usuários</h2>
+            <div class="">
                 @foreach($users as $user)
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $user->name }}</h5>
-                            <p class="card-text">{{ $user->email }}</p>
+                <div class="">
+                    <div class="">
+                        <div class="">
+                            <h5 class="">{{ $user->name }}</h5>
+                            
+                            <p class="">{{ $user->email }}</p>
+                            <button class="button9">Suspender</button>
+                            <button class="button9">Banir</button>
                         </div>
                     </div>
                 </div>
