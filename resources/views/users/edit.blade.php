@@ -21,15 +21,6 @@
         </div>
     
         <input type="submit" class="btn btn-primary" value="Enviar">
-        <form action="{{ route('deleteUser', [$user->id]) }}" method="POST" >
-            @csrf
-            @method('delete')
-            <button type="submit" class="btn btn-primary">
-                Logout
-            </button>
-        </form>
-        <input type="submit" class="btn btn-primary" value="Deletar">
-        
     </form>
 </div>
 @endsection

@@ -32,7 +32,7 @@
                 </li>
                 @else
                 <li>
-                    <form id="logout-form" action="{{ route('Logout') }}" method="POST" style="display: inline;">
+                    <form id="logout-form" action="{{ route('Logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="link1" style="background:none; border:none; cursor:pointer;">
                             Logout

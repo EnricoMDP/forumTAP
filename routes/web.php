@@ -40,5 +40,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users/{id}/edit', [UserController::class, 'editUser'])->name('EditUser');
     
-    Route::get('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('DeleteUser');
+    Route::delete('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('DeleteUser');
 });

@@ -64,9 +64,11 @@ public function register(Request $request) {
         return view('users.edit');
     }
 
-    public function deleteUser(Request $request, $id) {
-        $user = User::where('id', $id)->delete();
-        return redirect()->route('listAllUsers');
+    public function deleteUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('ListAllUsers')->with('success', 'User deleted successfully');
     }
     
 }
