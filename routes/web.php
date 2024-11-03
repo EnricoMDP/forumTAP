@@ -35,10 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('DeleteUser');
 
     Route::get('/categories', [CategoryController::class, 'viewCategories'])->name('viewCategories');
+    Route::match(['get', 'post'], '/createCategory', [CategoryController::class, 'createCategory'])->name('CreateCategory');
     Route::get('/categories/{id}', [CategoryController::class, 'listByTitle'])->name('listByTitle');
     Route::put('/categories/{id}/update', [CategoryController::class, 'updateCategory'])->name('UpdateCategory');
     Route::delete('/categories/{id}/delete', [CategoryController::class, 'deleteCategory'])->name('DeleteCategory');
-    Route::match(['get', 'post'], '/createCategory', [CategoryController::class, 'createCategory'])->name('CreateCategory');
 
     Route::get('/tags', [TagController::class, 'listAllTags'])->name('viewTags');
     Route::put('/tags/{id}/update', [TagController::class, 'updateCategory'])->name('UpdateCategory');

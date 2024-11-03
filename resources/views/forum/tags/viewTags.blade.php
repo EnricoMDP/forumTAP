@@ -4,15 +4,13 @@
 <link rel="stylesheet" href="{{ asset('css/allUsers.css') }}">
 <div class="containerAllUsers">
         <ul class="user-list">
-        <h2>Lista de categorias</h2>
+        <h2>Lista de tags</h2>
             <div class="">
-                @foreach($categories as $category)
+                @foreach($tags as $tag)
                 <div class="">
                     <div class="">
                         <div class="">
-                            <h5 class="">{{ $category->title }}</h5>
-                            
-                            <p class="">{{ $category->description }}</p>
+                            <h5 class="">{{ $tag->title }}</h5>
                         </div>
                     </div>
                 </div>

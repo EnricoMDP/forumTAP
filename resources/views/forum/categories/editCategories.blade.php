@@ -7,7 +7,7 @@
     <span>{{ session('message') }}</span>
     @if($category != null)
     <form action="{{ route('UpdateCategory', [$category->id]) }}" method="POST" class="itemX">
-        <h2 class="item2">Perfil</h2>
+        <h2 class="item2">Categorias</h2>
         @csrf
         @method('put')
         <div class="item2">

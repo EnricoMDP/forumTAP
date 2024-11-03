@@ -25,14 +25,20 @@ class TagController extends Controller
 
     public function createTag(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-        ]);
+        if ($request->isMethod('GET')) {
+            return view('forum.tags.create');
+        }
+        else{
+            $request->validate([
+                'title' => 'required|string|max:255',
+            ]);
+        }
 
         $tag = Tag::create([
             'title' => $request->title,
-
         ]);
+
+        Auth::login(Auth::user());
 
         return redirect()->route('listAllTags')->with('success', 'Tag created successfully');
     }
