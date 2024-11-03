@@ -1,6 +1,23 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/sail/compare/v1.29.3...1.x)
+## [Unreleased](https://github.com/laravel/sail/compare/v1.31.0...1.x)
+
+## [v1.31.0](https://github.com/laravel/sail/compare/v1.30.2...v1.31.0) - 2024-07-22
+
+* [1.x] Only support MariaDB 11 by [@Jubeki](https://github.com/Jubeki) in https://github.com/laravel/sail/pull/707
+* Update EXPOSE port command by [@SamuelMwangiW](https://github.com/SamuelMwangiW) in https://github.com/laravel/sail/pull/706
+
+## [v1.30.2](https://github.com/laravel/sail/compare/v1.30.1...v1.30.2) - 2024-07-05
+
+* [1.x] Use Official MariaDB Healthcheck Script by [@a1383n](https://github.com/a1383n) in https://github.com/laravel/sail/pull/704
+
+## [v1.30.1](https://github.com/laravel/sail/compare/v1.30.0...v1.30.1) - 2024-07-01
+
+* Fixed undefined array key mariadb10|11 error on installation. by [@kursatcanciger](https://github.com/kursatcanciger) in https://github.com/laravel/sail/pull/703
+
+## [v1.30.0](https://github.com/laravel/sail/compare/v1.29.3...v1.30.0) - 2024-06-18
+
+* MariaDB 11 support by [@tomcoonen](https://github.com/tomcoonen) in https://github.com/laravel/sail/pull/698
 
 ## [v1.29.3](https://github.com/laravel/sail/compare/v1.29.2...v1.29.3) - 2024-06-12
 

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
+class ComposerStaticInit16564d92d47700b4d7a7715641ccd474
 {
     public static $files = array (
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
@@ -535,8 +535,10 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Factories\\ConfigurationFactory' => __DIR__ . '/..' . '/laravel/pint/app/Factories/ConfigurationFactory.php',
         'App\\Factories\\ConfigurationResolverFactory' => __DIR__ . '/..' . '/laravel/pint/app/Factories/ConfigurationResolverFactory.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
+        'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ForumController' => __DIR__ . '/../..' . '/app/Http/Controllers/ForumController.php',
+        'App\\Http\\Controllers\\TagController' => __DIR__ . '/../..' . '/app/Http/Controllers/TagController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -549,6 +551,11 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Kernel' => __DIR__ . '/..' . '/laravel/pint/app/Kernel.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
+        'App\\Models\\Post' => __DIR__ . '/../..' . '/app/Models/Post.php',
+        'App\\Models\\Rate' => __DIR__ . '/../..' . '/app/Models/Rate.php',
+        'App\\Models\\Tag' => __DIR__ . '/../..' . '/app/Models/Tag.php',
         'App\\Models\\Topic' => __DIR__ . '/../..' . '/app/Models/Topic.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Output\\Concerns\\InteractsWithSymbols' => __DIR__ . '/..' . '/laravel/pint/app/Output/Concerns/InteractsWithSymbols.php',
@@ -3237,13 +3244,24 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'League\\Flysystem\\ZipArchive\\ZipArchiveException' => __DIR__ . '/..' . '/league/flysystem/src/ZipArchive/ZipArchiveException.php',
         'League\\Flysystem\\ZipArchive\\ZipArchiveProvider' => __DIR__ . '/..' . '/league/flysystem/src/ZipArchive/ZipArchiveProvider.php',
         'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMap.php',
+        'League\\MimeTypeDetection\\EmptyExtensionToMimeTypeMapTest' => __DIR__ . '/..' . '/league/mime-type-detection/src/EmptyExtensionToMimeTypeMapTest.php',
         'League\\MimeTypeDetection\\ExtensionLookup' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionLookup.php',
         'League\\MimeTypeDetection\\ExtensionMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetector.php',
+        'League\\MimeTypeDetection\\ExtensionMimeTypeDetectorTest' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionMimeTypeDetectorTest.php',
         'League\\MimeTypeDetection\\ExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/ExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\FinfoMimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/FinfoMimeTypeDetector.php',
+        'League\\MimeTypeDetection\\FinfoMimeTypeDetectorTest' => __DIR__ . '/..' . '/league/mime-type-detection/src/FinfoMimeTypeDetectorTest.php',
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
+        'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMapTest' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMapTest.php',
+        'League\\MimeTypeDetection\\Generation\\CombinedMimeTypeProvider' => __DIR__ . '/..' . '/league/mime-type-detection/src/Generation/CombinedMimeTypeProvider.php',
+        'League\\MimeTypeDetection\\Generation\\ExtensionToMimeTypeMapGenerator' => __DIR__ . '/..' . '/league/mime-type-detection/src/Generation/ExtensionToMimeTypeMapGenerator.php',
+        'League\\MimeTypeDetection\\Generation\\FlysystemProvidedMimeTypeProvider' => __DIR__ . '/..' . '/league/mime-type-detection/src/Generation/FlysystemProvidedMimeTypeProvider.php',
+        'League\\MimeTypeDetection\\Generation\\JsHttpMimeDBMimeTypeProvider' => __DIR__ . '/..' . '/league/mime-type-detection/src/Generation/JsHttpMimeDBMimeTypeProvider.php',
+        'League\\MimeTypeDetection\\Generation\\MimeTypeForExtension' => __DIR__ . '/..' . '/league/mime-type-detection/src/Generation/MimeTypeForExtension.php',
+        'League\\MimeTypeDetection\\Generation\\MimeTypeProvider' => __DIR__ . '/..' . '/league/mime-type-detection/src/Generation/MimeTypeProvider.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
+        'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMapTest' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMapTest.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -6023,9 +6041,9 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit16564d92d47700b4d7a7715641ccd474::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit16564d92d47700b4d7a7715641ccd474::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit16564d92d47700b4d7a7715641ccd474::$classMap;
 
         }, null, ClassLoader::class);
     }
