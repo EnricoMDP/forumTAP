@@ -5,28 +5,23 @@
 <div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 100vh;">
     
     <span>{{ session('message') }}</span>
-    @if($category != null)
-    <form action="{{ route('UpdateCategory', [$category->id]) }}" method="POST" class="itemX">
-        <h2 class="item2">Perfil</h2>
+    @if($tag != null)
+    <form action="{{ route('UpdateTag', [$tag->id]) }}" method="POST" class="itemX">
+        <h2 class="item2">Editar tag</h2>
         @csrf
         @method('put')
         <div class="item2">
             
             <label for="title" class="form-label">Título:</label>
-            <input type="text" id="title" name="title" class="form-control" value="{{ $category->title }}" required>
+            <input type="text" id="title" name="title" class="form-control" value="{{ $tag->title }}" required>
             @error('name') <span>{{ $message }}</span> @enderror
         </div>
     
-        <div class="item2">
-            <label for="description" class="form-label">Descrição:</label>
-            <input type="text" id="description" name="description" class="form-control" value="{{ $category->description }}" required>
-            @error('email') <span>{{ $message }}</span> @enderror
-        </div>
     
         <input type="submit" class="item4 button" value="Enviar">
     </form>
 
-    <form action="{{ route('DeleteCategory', [$category->id]) }}" method="POST">
+    <form action="{{ route('DeleteTag', [$tag->id]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="item4 button">Deletar</button>

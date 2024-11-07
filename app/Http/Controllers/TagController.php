@@ -17,10 +17,16 @@ class TagController extends Controller
         return view('forum.tags.viewTags', ['tags' => $tags]);
     }
 
-    public function listTagById($id)
-    {
-        $tag = Tag::findOrFail($id);
-        return view('tags.listTagById', ['tag' => $tag]);
+    // public function listTagById($id)
+    // {
+    //     $tag = Tag::findOrFail($id);
+    //     return view('tags.listTagById', ['tag' => $tag]);
+    // }
+
+    public function listTagByTitle(Request $request,$title) {
+        $tag = Tag::where('title', $title)->first();
+        return view('forum.tags.editTags', ['tag' => $tag]);
+        // return view('categories.find');
     }
 
     public function createTag(Request $request)
@@ -40,7 +46,7 @@ class TagController extends Controller
 
         Auth::login(Auth::user());
 
-        return redirect()->route('listAllTags')->with('success', 'Tag created successfully');
+        return redirect()->route('viewTags')->with('success', 'Tag created successfully');
     }
 
     public function editTag($id)
@@ -51,25 +57,18 @@ class TagController extends Controller
 
     public function updateTag(Request $request, $id)
     {
-        $request->validate([
-            'id' => 'required|int|max:255',
-            'title' => 'required|string|max:255',
-            
-        ]);
-
-        $tag = Tag::findOrFail($id);
-        $tag->title = $request->title;
-
+        $tag = Tag::where('id', $id)->first();
+        $tag->title = $request-> title;
         $tag->save();
-
-        return redirect()->route('listAllTags')->with('success', 'Tag updated successfully');
+        return redirect()->route('viewTags', [$tag->id])
+            ->with('message', 'Atualizado com sucesso!');
     }
 
-    public function deleteTag($id)
-    {
+    public function DeleteTag(Request $request, $id)
+    { 
         $tag = Tag::findOrFail($id);
         $tag->delete();
 
-        return redirect()->route('listAllTags')->with('success', 'Tag deleted successfully');
+        return redirect()->route('viewTags')->with('success', 'Tag deleted successfully');
     }
 }
