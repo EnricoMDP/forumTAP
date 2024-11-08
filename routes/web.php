@@ -53,5 +53,4 @@ Route::middleware('auth')->group(function () {
     Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('updateTopic');
     Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('editTopic');
     Route::get('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('deleteTopic');
-
 });

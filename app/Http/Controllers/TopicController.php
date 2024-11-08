@@ -59,6 +59,12 @@
         
         }
 
+        public function editTopic($id)
+        {
+            $topic = Topic::findOrFail($id);
+            return view('forum.topics.editTopic', ['topic' => $topic]);
+        }
+
         public function store(Request $request){
             $userId = Auth::id();
 

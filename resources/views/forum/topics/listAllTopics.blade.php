@@ -45,7 +45,7 @@
                         <td>{{ $topic->category->title }}</td>
                         <td>
                             <a href="{{ route('listTopicById', $topic->id) }}" class="btn btn-success">View</a>
-                            <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editTopicModal"
+                            <a href="{{ route('editTopic', $topic->id) }}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editTopicModal"
                                data-id="{{ $topic->id }}" data-title="{{ $topic->title }}" 
                                data-description="{{ $topic->description }}" data-status="{{ $topic->status }}"
                                data-category="{{ $topic->category_id }}">Edit</a>
