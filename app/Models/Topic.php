@@ -28,6 +28,6 @@ class Topic extends Post
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'topic_tags', 'topic_id', 'tag_id');
     }
 }

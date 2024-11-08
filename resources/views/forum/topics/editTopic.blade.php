@@ -21,12 +21,20 @@
             <label for="status" class="form-label">Título:</label>
             <input type="text" id="status" name="status" class="form-control" value="{{ $topic->status }}" required>
 
-            <select  type="" id="category" name="category" value="{{ old('category') }}" required>
-            @foreach ($categories as $category)
-                <option value = "{{$topic->category}}">
-                    {{$category -> title}}
-                </option>
-            @endforeach
+            <select  type="" id="category_id" name="category_id" value="{{ old('category') }}" required>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}" {{ $topic->category_id == $category->id ? 'selected' : '' }}>
+                        {{ $category->title }}
+                    </option>
+                @endforeach
+            </select>
+
+            <select name="tags[]" id="tags" multiple>
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}" {{ in_array($tag->id, $topic->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
+                        {{ $tag->title }}
+                    </option>
+                @endforeach
             </select>
             
             @error('name') <span>{{ $message }}</span> @enderror
@@ -36,7 +44,7 @@
         <input type="submit" class="item4 button" value="Enviar">
     </form>
 
-    <form action="{{ route('DeleteTag', [$topic->id]) }}" method="POST">
+    <form action="{{ route('deleteTopic', [$topic->id]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="item4 button">Deletar</button>

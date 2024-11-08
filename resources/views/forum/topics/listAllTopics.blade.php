@@ -25,6 +25,7 @@
                     <th>Image</th>
                     <th>Status</th>
                     <th>Category</th>
+                    <th>Tags</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -44,15 +45,28 @@
                         <td>{{ $topic->status == 1 ? 'Active' : 'Inactive' }}</td>
                         <td>{{ $topic->category->title }}</td>
                         <td>
-                            <a href="{{ route('listTopicById', $topic->id) }}" class="btn btn-success">View</a>
-                            <a href="{{ route('editTopic', $topic->id) }}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editTopicModal"
-                               data-id="{{ $topic->id }}" data-title="{{ $topic->title }}" 
-                               data-description="{{ $topic->description }}" data-status="{{ $topic->status }}"
-                               data-category="{{ $topic->category_id }}">Edit</a>
-                            <button class="btn btn-danger" onclick="deleteTopic({{ $topic->id }})">Delete</button>
-                            <form id="delete-form-{{ $topic->id }}" action="{{ route('deleteTopic', $topic->id) }}" method="GET" style="display: none;">
-                                @csrf
-                            </form>
+                            @foreach($topic->tags as $tag)
+                                <span>{{ $tag->title }}</span> 
+                            @endforeach
+                        </td>
+                        <td>
+                            <div style="display: flex; ">
+                                <a href="{{ route('listTopicById', $topic->id) }}" class="btn btn-success">View</a>
+                                <a href="{{ route('editTopic', $topic->id) }}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editTopicModal"
+                                    data-id="{{ $topic->id }}" data-title="{{ $topic->title }}" 
+                                    data-description="{{ $topic->description }}" data-status="{{ $topic->status }}"
+                                    data-category="{{ $topic->category_id }}">Edit</a>
+                                <!-- <button class="btn btn-danger" onclick="deleteTopic({{ $topic->id }})">Delete</button>
+                                <form id="delete-form-{{ $topic->id }}" action="{{ route('deleteTopic', $topic->id) }}" method="GET" style="display: none;">
+                                    @csrf
+                                </form> -->
+        
+                                <form action="{{ route('deleteTopic', [$topic->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

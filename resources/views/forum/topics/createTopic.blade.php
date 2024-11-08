@@ -32,8 +32,15 @@
         @endforeach
         </select>
 
+        <label for="tags">Tags</label>
+        <select name="tags[]" id="tags" multiple>
+            @foreach($tags as $tag)
+                <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+            @endforeach
+        </select>
+
+
         <button type="submit" class="btn btn-primary">Create Topic</button>
     </form>
-    <></
 </div>
 @endsection

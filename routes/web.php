@@ -52,5 +52,5 @@ Route::middleware('auth')->group(function () {
     Route::match(['get', 'post'],'/createTopic', [TopicController::class, 'createTopic'])->name('createTopic');
     Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('updateTopic');
     Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('editTopic');
-    Route::get('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('deleteTopic');
+    Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('deleteTopic');
 });
