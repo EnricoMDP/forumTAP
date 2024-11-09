@@ -24,7 +24,7 @@
             <input type="number" class="form-control" id="status" name="status" rows="3" required></input>
         </div>
 
-        <select  type="" id="category" name="category" value="{{ old('category') }}" required>
+        <select  type="" id="category" name="category" value="">
         @foreach ($categories as $category)
             <option value = "{{$category->id}}">
                 {{$category -> title}}
