@@ -1,78 +1,58 @@
 @extends('layouts.header_cauan')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 @section('content')
-<div class="topic-container">
-    <h1 class="text-center">All Topics</h1>
-    <div class="text-center mb-3">
-        <a class="btn-purple" href="{{ route('createTopic') }}">
-            Create New Topic
-        </a>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Forum Topics</h1>
+
+    <!-- Botão para criar um novo tópico -->
+    <div class="text-center mb-4">
+        <a href="{{ route('createTopic') }}" class="btn btn-primary">Create New Topic</a>
     </div>
 
     @if(session('success'))
         <div class="alert alert-success text-center">{{ session('success') }}</div>
     @endif
 
-    <div class="table-responsive mx-auto" style="width: 100%;">
-        <table class="table table-striped text-center">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Status</th>
-                    <th>Category</th>
-                    <th>Tags</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($topics as $topic)
-                    <tr>
-                        <td>{{ $topic->id }}</td>
-                        <td>{{ $topic->title }}</td>
-                        <td>{{ $topic->description }}</td>
-                        <td>
-                            @if($topic->post)
-                                <img src="{{ asset('img/' . $topic->post->image) }}" alt="Image" width="50">
-                            @else
-                                <span>No Image</span> 
-                            @endif
-                        </td>
-                        <td>{{ $topic->status == 1 ? 'Active' : 'Inactive' }}</td>
-                        <td>{{ $topic->category->title }}</td>
-                        <td>
-                            @foreach($topic->tags as $tag)
-                                <span>{{ $tag->title }}</span> 
-                            @endforeach
-                        </td>
-                        <td>
-                            <div style="display: flex; ">
-                                <a href="{{ route('listTopicById', $topic->id) }}" class="btn btn-success">View</a>
-                                <a href="{{ route('editTopic', $topic->id) }}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editTopicModal"
-                                    data-id="{{ $topic->id }}" data-title="{{ $topic->title }}" 
-                                    data-description="{{ $topic->description }}" data-status="{{ $topic->status }}"
-                                    data-category="{{ $topic->category_id }}">Edit</a>
-                                <!-- <button class="btn btn-danger" onclick="deleteTopic({{ $topic->id }})">Delete</button>
-                                <form id="delete-form-{{ $topic->id }}" action="{{ route('deleteTopic', $topic->id) }}" method="GET" style="display: none;">
-                                    @csrf
-                                </form> -->
-        
-                                <form action="{{ route('deleteTopic', [$topic->id]) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
+    <!-- Lista de tópicos -->
+    <div class="d-flex flex-column align-items-center">
+        @foreach($topics as $topic)
+            <div class="card mb-3 w-75 shadow-sm">
+                <!-- Header do tópico -->
+                <a href="{{ route('listTopicById', $topic->id) }}" class="h5 text-decoration-none text-dark">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                            {{ $topic->title }}
+                    </div>
+                </a>
 
+                <div class="card-body">
+                    <p class="card-text">{{ Str::limit($topic->description, 100) }}</p>
+                    <p class="text-muted">Category: {{ $topic->category->title }}</p>
+                    <p class="text-muted">Status: {{ $topic->status == 1 ? 'Active' : 'Inactive' }}</p>
+
+                    @if($topic->post && $topic->post->image)
+                        <img src="{{ asset('img/' . $topic->post->image) }}" alt="Topic Image" class="img-fluid mt-3" style="max-height: 150px; object-fit: cover;">
+                    @else
+                        <p class="text-muted mt-3">No Image</p>
+                    @endif
+
+                    <!-- Exibição das tags -->
+                    <div class="mt-3">
+                        <strong>Tags:</strong>
+                        @foreach($topic->tags as $tag)
+                            <span class="badge bg-secondary">{{ $tag->title }}</span>
+                        @endforeach
+                    </div>
+                    <br>
+                    <a href="{{ route('listTopicById', $topic->id) }}" class="text-muted">
+                        <i class="fas fa-comment-alt" style="font-size: 1.5rem;"></i>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    @if($topics->isEmpty())
+        <p class="text-center">No topics available. <a href="{{ route('createTopic') }}">Create one now</a>.</p>
+    @endif
+</div>
 @endsection

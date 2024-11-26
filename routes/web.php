@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,4 +54,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('updateTopic');
     Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('editTopic');
     Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('deleteTopic');
+
+    //Comentários
+    Route::post('/comments/create', [CommentController::class, 'createComment'])->name('createComment');
+    Route::put('/comments/{id}/update', [CommentController::class, 'updateComment'])->name('updateComment');
+    Route::delete('/comments/{id}/delete', [CommentController::class, 'deleteComment'])->name('deleteComment');
+
 });
+

@@ -21,7 +21,7 @@
 
         public function listTopicById($id){
             $topic = Topic::findOrFail($id);
-            return view('topics.listTopicById', compact('topic'));
+            return view('forum.topics.listTopicById', compact('topic'));
         }
 
         public function showTopics(){

@@ -15,10 +15,10 @@
             <label for="title" class="form-label">Título:</label>
             <input type="text" id="title" name="title" class="form-control" value="{{ $topic->title }}" required>
 
-            <label for="description" class="form-label">Título:</label>
+            <label for="description" class="form-label">Descrição:</label>
             <input type="text" id="description" name="description" class="form-control" value="{{ $topic->description }}" required>
 
-            <label for="status" class="form-label">Título:</label>
+            <label for="status" class="form-label">Status:</label>
             <input type="text" id="status" name="status" class="form-control" value="{{ $topic->status }}" required>
 
             <select  type="" id="category_id" name="category_id" value="{{ old('category') }}" required>
