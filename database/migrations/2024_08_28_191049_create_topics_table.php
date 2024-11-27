@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('topics', function (Blueprint $table) {
-            $table->id();
+            $table->id()->primary();
             $table->unsignedBigInteger('category_id');
             $table->string('title');
             $table->text('description');

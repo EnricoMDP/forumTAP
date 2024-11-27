@@ -38,7 +38,7 @@ class CommentController extends Controller
         $comment->content = $validatedData['content'];
         $comment->user_id = auth()->id();
         $comment->topic_id = $validatedData['topic_id'];
-        
+
         if (!empty($validatedData['commentable_id'])) {
             $comment->commentable_id = $validatedData['commentable_id'];
             $comment->commentable_type = Comment::class;
@@ -47,6 +47,7 @@ class CommentController extends Controller
             $comment->commentable_type = Post::class;
         }
         
+        dd($comment);
 
         $comment->save();
     

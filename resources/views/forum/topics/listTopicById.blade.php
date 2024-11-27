@@ -7,6 +7,20 @@
 
     <!-- Comentários -->
     <h3 class="mt-5">Comments</h3>
+
+    <!-- Formulário para adicionar comentário -->
+    <form id="createCommentForm" action="{{ route('createComment') }}" method="POST">
+        @csrf
+        <input type="hidden" name="post_id" id="comment-post-id" value="">
+        <input type="hidden" name="topic_id" id="comment-topic-id" value="">
+        <input type="hidden" name="commentable_id" id="comment-commentable-id" value="">
+        <div class="mb-3">
+            <label for="content" class="form-label">Comment</label>
+            <textarea class="form-control" id="content" name="content" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </form>
+
     <div class="mt-3">
         @foreach ($topic->comments as $comment)
             <div class="card mb-3">
@@ -39,26 +53,21 @@
                     </div>
 
                     <!-- Formulário para responder -->
-                    <form action="{{ route('createComment') }}" method="POST" class="mt-3">
+                    <form id="createReplyForm" action="{{ route('createComment') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="commentable_id" value="{{ $comment->id }}">
-                        <input type="hidden" name="commentable_type" value="App\Models\Comment">
-                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                        <textarea name="content" class="form-control mb-2" rows="2" placeholder="Write a reply..."></textarea>
-                        <button type="submit" class="btn btn-primary btn-sm">Reply</button>
+                        <input type="hidden" name="post_id" id="comment-post-id" value="">
+                        <input type="hidden" name="topic_id" id="comment-topic-id" value="">
+                        <input type="hidden" name="commentable_id" id="comment-commentable-id" value="">
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Comment</label>
+                            <textarea class="form-control" id="content" name="content" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Comment</button>
                     </form>
                 </div>
             </div>
         @endforeach
     </div>
-
-    <!-- Formulário para adicionar comentário -->
-    <form action="{{ route('createComment') }}" method="POST" class="mt-5">
-        @csrf
-        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-        <textarea name="content" class="form-control mb-2" rows="3" placeholder="Add a comment..."></textarea>
-        <button type="submit" class="btn btn-success">Add Comment</button>
-    </form>
 </div>
 
 <script>

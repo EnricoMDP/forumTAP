@@ -56,8 +56,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('deleteTopic');
 
     //Comentários
+    Route::get('/comments', [CommentController::class, 'listAllComments'])->name('listAllComments');
+    Route::get('/comments/{id}', [CommentController::class, 'listCommentById'])->name('listCommentById');
     Route::post('/comments/create', [CommentController::class, 'createComment'])->name('createComment');
     Route::put('/comments/{id}/update', [CommentController::class, 'updateComment'])->name('updateComment');
+    Route::get('/comments/{id}/edit', [CommentController::class, 'editComment'])->name('editComment');
     Route::delete('/comments/{id}/delete', [CommentController::class, 'deleteComment'])->name('deleteComment');
 
 });
