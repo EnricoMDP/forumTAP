@@ -1,4 +1,4 @@
-@extends('layouts.header_cauan')
+@extends('layouts.header_footer')
 
 @section('content')
 <div class="container mt-5">
@@ -44,6 +44,7 @@
                         <input type="hidden" name="commentable_id" value="{{ $comment->id }}">
                         <input type="hidden" name="commentable_type" value="App\Models\Comment">
                         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
                         <textarea name="content" class="form-control mb-2" rows="2" placeholder="Write a reply..."></textarea>
                         <button type="submit" class="btn btn-primary btn-sm">Reply</button>
                     </form>
@@ -56,6 +57,7 @@
     <form action="{{ route('createComment') }}" method="POST" class="mt-5">
         @csrf
         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
         <textarea name="content" class="form-control mb-2" rows="3" placeholder="Add a comment..."></textarea>
         <button type="submit" class="btn btn-success">Add Comment</button>
     </form>

@@ -9,6 +9,7 @@
     use App\Models\Post;
     use App\Models\Tag;
     use App\Models\Category;
+    use App\Models\Comment;
 
     class TopicController extends Controller
     {
@@ -21,7 +22,9 @@
 
         public function listTopicById($id){
             $topic = Topic::findOrFail($id);
-            return view('forum.topics.listTopicById', compact('topic'));
+            $post = $topic->post;
+
+            return view('forum.topics.listTopicById', compact('topic', 'post'));
         }
 
         public function showTopics(){
@@ -62,6 +65,11 @@
                 $topic->tags()->sync($request->tags);
             }
 
+            $post = $topic->post()->create([
+                'user_id' => auth()->id(),
+                'image' => $request->image ?? '',
+            ]);
+            
             Auth::login(Auth::user());
 
             return redirect()->route('listAllTopics');

@@ -40,28 +40,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/categories/{id}/delete', [CategoryController::class, 'deleteCategory'])->name('DeleteCategory');
 
     //Tags
-    Route::get('/tags', [TagController::class, 'listAllTags'])->name('viewTags');
+    Route::get('/tags', [TagController::class, 'listAllTags'])->name('ViewTags');
     Route::match(['get', 'post'], '/createTag', [TagController::class, 'createTag'])->name('CreateTag');
-    Route::get('/tags/{id}', [TagController::class, 'listTagByTitle'])->name('listTagByTitle');
+    Route::get('/tags/{id}', [TagController::class, 'listTagByTitle'])->name('ListTagByTitle');
     Route::put('/tags/{id}/update', [TagController::class, 'UpdateTag'])->name('UpdateTag');
     Route::delete('/tags/{id}/delete', [TagController::class, 'DeleteTag'])->name('DeleteTag');
 
     //Tópicos
     
-    Route::get('/topics', [TopicController::class, 'listAllTopics'])->name('listAllTopics');
-    Route::get('/topics/{id}', [TopicController::class, 'listTopicById'])->name('listTopicById');
-    Route::match(['get', 'post'],'/createTopic', [TopicController::class, 'createTopic'])->name('createTopic');
-    Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('updateTopic');
-    Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('editTopic');
-    Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('deleteTopic');
+    Route::get('/topics', [TopicController::class, 'listAllTopics'])->name('ListAllTopics');
+    Route::get('/topics/{id}', [TopicController::class, 'listTopicById'])->name('ListTopicById');
+    Route::match(['get', 'post'],'/createTopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
+    Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('UpdateTopic');
+    Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('EditTopic');
+    Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
 
     //Comentários
-    Route::get('/comments', [CommentController::class, 'listAllComments'])->name('listAllComments');
-    Route::get('/comments/{id}', [CommentController::class, 'listCommentById'])->name('listCommentById');
-    Route::post('/comments/create', [CommentController::class, 'createComment'])->name('createComment');
-    Route::put('/comments/{id}/update', [CommentController::class, 'updateComment'])->name('updateComment');
-    Route::get('/comments/{id}/edit', [CommentController::class, 'editComment'])->name('editComment');
-    Route::delete('/comments/{id}/delete', [CommentController::class, 'deleteComment'])->name('deleteComment');
+    Route::get('/comments', [CommentController::class, 'listAllComments'])->name('ListAllComments');
+    Route::get('/comments/{id}', [CommentController::class, 'listCommentById'])->name('ListCommentById');
+    Route::post('/comments/create', [CommentController::class, 'createComment'])->name('CreateComment');
+    Route::put('/comments/{id}/update', [CommentController::class, 'updateComment'])->name('UpdateComment');
+    Route::get('/comments/{id}/edit', [CommentController::class, 'editComment'])->name('EditComment');
+    Route::delete('/comments/{id}/delete', [CommentController::class, 'deleteComment'])->name('DeleteComment');
 
 });
 

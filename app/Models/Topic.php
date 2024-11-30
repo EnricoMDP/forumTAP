@@ -30,4 +30,9 @@ class Topic extends Post
     {
         return $this->belongsToMany(Tag::class, 'topic_tags', 'topic_id', 'tag_id');
     }
+
+    public function post()
+    {
+        return $this->morphOne(Post::class, 'postable');
+    }
 }

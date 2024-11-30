@@ -282,7 +282,7 @@
             },
             "time": "2024-01-30T19:34:25+00:00",
             "type": "library",
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Deprecations\\": "lib/Doctrine/Deprecations"
@@ -7272,7 +7272,7 @@
                     "url": "https://github.com/symfony/polyfill"
                 }
             },
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "files": [
                     "bootstrap.php"

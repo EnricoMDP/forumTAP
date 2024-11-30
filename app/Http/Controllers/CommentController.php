@@ -24,18 +24,26 @@ class CommentController extends Controller
 
     public function createComment(Request $request)
     {
-
         $validatedData = $request->validate([
             'content' => 'required|string',
-            'post_id' => 'required|integer|exists:posts,id',
+            'post_id' => 'nullable|integer|exists:posts,id',
             'commentable_id' => 'nullable|integer|exists:comments,id',
             'topic_id' => 'required|exists:topics,id',
         ]);
-
+        
+        
         $comment = new Comment();
         $comment->content = $validatedData['content'];
         $comment->user_id = auth()->id();
         $comment->topic_id = $validatedData['topic_id'];
+
+        // if($request->commentable_id){
+        //     $isValidCommentable = Comment::where('id', $request->commmentable_id)->exists() || Post::where('id', $request->post_id)->exists();
+
+        //     if(!$isValidCommentable){
+        //         return redirect()->back()->withErrors(['commentable_id' => 'ta invalido essa porra']);
+        //     }
+        // }
 
         if (!empty($validatedData['commentable_id'])) {
             $comment->commentable_id = $validatedData['commentable_id'];
