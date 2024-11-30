@@ -11,27 +11,32 @@ class Comment extends Post
 
     protected $fillable = [
         'content',
-        'topic_id',
+        'user_id',
+        'topic_id'
     ];
 
-    public static function boot()
+    public function post()
     {
-        parent::boot();
-
-        // Gera um ID numérico único antes de criar o comentário
-        static::creating(function ($comment) {
-            $comment->id = $comment->id ?? self::generateUniqueId();
-        });
+        return $this->morphOne(Post::class, 'postable');
     }
 
-    private static function generateUniqueId()
+    public function commentable()
     {
-        // Retorna um número único baseado no timestamp
-        return now()->timestamp . random_int(1000, 9999);
+        return $this->morphTo();
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function topic()
     {
         return $this->belongsTo(Topic::class);
+    }
+    
+    public function replies()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->where('commentable_type', Comment::class);
     }
 }

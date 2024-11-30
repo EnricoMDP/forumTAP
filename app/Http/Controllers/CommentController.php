@@ -31,8 +31,6 @@ class CommentController extends Controller
             'commentable_id' => 'nullable|integer|exists:comments,id',
             'topic_id' => 'required|exists:topics,id',
         ]);
-        
-        
 
         $comment = new Comment();
         $comment->content = $validatedData['content'];
@@ -46,8 +44,6 @@ class CommentController extends Controller
             $comment->commentable_id = $validatedData['post_id'];
             $comment->commentable_type = Post::class;
         }
-        
-        dd($comment);
 
         $comment->save();
     
