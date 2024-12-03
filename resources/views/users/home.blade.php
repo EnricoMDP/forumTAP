@@ -1,27 +1,43 @@
 @extends('layouts.header_footer')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-<div class="containerHome" style="min-height: 100vh;">
-        <div class="containerUserHome">
-            <h2 class="text-home">HOME</h2>
-            @if($user != null)
-            <p>Seja bem-vindo {{ $user->name }}</p>
-            
-            @else
-            <p>Seja bem-vindo visitante!</p>
-            @endif
-        </div>
 
-        <div class="containerButtonUserHome">
-            @if($user == null)
-            <a href="{{ route('Login') }}">
-                <button class="button2">Login</button>
-            </a>
-            <a href="{{ route('Register') }}">
-                <button class="button2">Register</button>
-            </a>
-            @endif
+@if($topics != null)
+    @foreach($topics as $topic)
+        <div class="posts_container">
+            <div class="post_autorInfo">
+                <div style="display: flex; align-items: center;">
+                    <img src="./img/usuario.png" alt="" class="userProfilePic">
+                    <h2>{{$user -> name}}</h2>
+                    <span>-</span>
+                    <h3>{{$topic->created_at->format('H:i a')}}</h3>
+                </div>
+                <button>...</button>
+            </div>
+
+            <div class="post_content">
+                <a href="{{ route('ListTopicById', $topic->id) }}" style="text-decoration:none;">
+                    <h1>{{$topic -> title}}</h1>
+                </a>
+                <p>{{$topic -> description}}</p>
+                <img src="./img/Screenshot_5.png" alt="">
+            </div>
+
+            <div class="post_info">
+                <span class="likesContainer">
+                    <button>🠕</button>
+                    <span>123</span>
+                    <button>🠗</button>
+                </span>
+                <a href="{{ route('ListTopicById', $topic->id) }}" class="commentsContainer">
+                    <span>
+                        </span>V<span>
+                        </span>123</span>
+                    <span>
+                </a>
+            </div>
         </div>
-</div>
-@endsection
+    @endforeach
+@else
+<h1>Não existem tópicos no momento, seja o primeiro!</h1>
+@endif

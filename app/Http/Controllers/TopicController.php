@@ -72,7 +72,7 @@
             
             Auth::login(Auth::user());
 
-            return redirect()->route('listAllTopics');
+            return redirect()->route('Home');
         
         }
 

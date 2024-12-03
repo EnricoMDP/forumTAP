@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <h1>Create New Topic</h1>
-    <form action="{{ route('createTopic') }}" method="POST">
+    <form action="{{ route('CreateTopic') }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="title">Title</label>

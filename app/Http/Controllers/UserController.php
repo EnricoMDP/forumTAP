@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function listAllUsers() {
-        $users = User::all(); // Busca todos os usuários
+        $users = User::all(); // Busca todos os usuáriose
         return view('users.listAllUsers', ['users' => $users]); // Retorna a view com os dados dos usuários
     }
 
     public function index() {
+        $topics = Topic::all();
         $user = Auth::user();
-        return view('users.home', compact('user'));
+        return view('users.home', compact('user', 'topics'));
     }
 
     public function listUserById(Request $request,$uid) {

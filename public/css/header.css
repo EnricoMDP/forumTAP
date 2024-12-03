@@ -1,104 +1,175 @@
-/* a {
-  color: #fff;
-  text-decoration: none;
-} */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-.p-menu1{
-   height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto";
 }
 
-body {
-  background-color: #ffff;
+header {
+    background-color: #3586ff;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+    width: 100%;
+}
+
+#searchBar {
+    width: 50%; /* Define a largura da barra de pesquisa */
+    max-width: 400px; /* Limita a largura máxima */
+    min-width: 200px; /* Limita a largura mínima */
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-container {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o contêiner */
+    gap: 10px; /* Espaço entre a imagem e os textos */
+    color: white; /* Mantém o texto branco */
+}
+
+.user-container ion-icon {
+    flex-shrink: 0; /* Garante que o ícone não encolha */
+    width: 30px;
+    height: 30px;
+}
+
+.user-container div {
+    display: flex;
+    flex-direction: column; /* Garante que os textos fiquem verticais */
+    text-align: left; /* Alinha o texto à esquerda */
+    gap: 2px; /* Espaço entre Nome e email */
+}
+
+.user-container span {
+    display: block; /* Garante que cada texto ocupe sua própria linha */
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+.logoContainer p {
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    margin-left: 5px;
+}
+
+.logoContainer img {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 4px;
+}
+
+.slider {
+    margin-right: 10px;
+}
+
+.slider img {
+    width: 20px;
+    height: 20px;
+}
+
+.navbarMain {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 200px;
+    height: 100vh;
+    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 0 0 15px;
+    /* margin-right: 200px; */
+    border-right: 5px solid #3586ff;
+}
+
+.menuHeader {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    /* color: white; */
+}
+
+.menuHeader div {
+    display: flex;
+    align-items: center;
+    transition: 0.6s; /* Esse transition pode ser removido, não é necessário aqui */
+}
+
+.menuHeader div:hover ion-icon {
+    transform: translateY(-10px);
+    transition: 0.6s; /* O efeito de transição se aplica somente ao ícone */
+}
+
+ion-icon {
+    color: #244f88;
+    width: 30px;
+    height: 30px;
+    transition: 0.6s; 
+}
+
+.menuHeader a {
+    text-decoration: none;
+    padding: 10px;
+    color:  #143868;
+}
+
+.menuHeader a:hover {
+    color: lightblue;
+}
+
+.menuHeader a:visited {
+    text-decoration: none;
 }
 
 
-/* Hamburger */
-.hamburger1 {
-  height: 45px;
-  margin: 10px;
-  display: -ms-grid;
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  justify-items: center;
-  z-index: 120;
-}
+@media only screen and (max-width: 600px) {
+    header {
+        flex-direction: row;
+    }
 
-.hamburger1 div {
-  background-color: rgb(61, 61, 61);
-  position: relative;
-  width: 40px;
-  height: 5px;
-  margin-top: 7px;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
+    .logoContainer {
+        align-self: center;
+    }
 
-#toggle1 {
-  display: none;
-}
+    .navbarMain {
+        flex-direction: row;
+        height: 10vh;
+        min-width: 100vw;
+    }
 
-#toggle1:checked + .hamburger1 .top {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  margin-top: 22.5px;
-}
+    .menuHeader {
+        flex-direction: row;
+        align-items: center;
+        margin-top: 0;
+        gap: 15px;
+        margin-right: 10px;
+        align-self: center;
+    }
 
-#toggle1:checked + .hamburger1 .meat {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  margin-top: -5px;
-}
+    .menuHeader div a {
+        display: none;
+    }
 
-#toggle1:checked + .hamburger1 .bottom {
-  -webkit-transform: scale(0);
-          transform: scale(0);
-}
-
-#toggle1:checked ~ .menu1 {
-  height: 340px;
-}
-
-
-/* Menu */
-.menu1 {
-  width: 100%;
-  background-color: #02173F;
-  margin: 0;
-  display: -ms-grid;
-  display: grid;
-  grid-template-rows: 1fr repeat(4, 0.5fr);
-  grid-row-gap: 25px;
-  padding: 0;
-  list-style: none;
-  clear: both;
-  width: auto;
-  text-align: center;
-  height: 0px;
-  overflow: hidden;
-  transition: height .4s ease;
-  z-index: 120;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.menu1 a:first-child {
-  margin-top: 40px;
-}
-
-.menu1 a:last-child {
-  margin-bottom: 40px;
-}
-
-.link1 {
-  width: 100%;
-  margin: 0;
-  padding: 10px 0;
-  font: 700 20px 'Oswald', sans-serif;
-}
-
-.link1:hover {
-  background-color: #fff;
-  color: rgb(61, 61, 61);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+    .containerLogin {
+        background-color: blue;
+    }
 }
