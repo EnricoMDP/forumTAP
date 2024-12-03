@@ -77,7 +77,7 @@ class CommentController extends Controller
             ]);
         }
 
-        return redirect()->route('listAllComments')->with('success', 'Comment updated successfully.');
+        return redirect()->route('ListAllComments')->with('success', 'Comment updated successfully.');
     }
 
     public function deleteComment($id)
@@ -85,6 +85,6 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($id);
         $comment->delete();
         
-        return redirect()->route('listAllComments')->with('success', 'Comment deleted successfully.');
+        return redirect()->route('ListAllTopics')->with('success', 'Comment deleted successfully.');
     }
 }

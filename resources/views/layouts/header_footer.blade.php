@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Fórum - Laravel </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/novoMain.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/all.min.css') }}">
 </head>
 <body>
     <header class="headerIndex">
@@ -19,27 +20,31 @@
             </div>
         </div>
         <div class="menu">
-            <!-- 1 -->
             <div>
                 <img src="{{ asset('images/botao-home.png') }}" alt="">
-                <a href="{{ route('ListAllTopics') }}">Home</a>
+                <a href="{{ route('Home') }}">Home</a>
             </div>
-            <!-- 2 -->
+
+            <div>
+                <i class="fas fa-comments"></i>
+                <a href="{{ route('ListAllTopics') }}">Posts</a>
+            </div>
+
             <div>
                 <img src="{{ asset('images/linhas-de-opcoes.png') }}" alt="">
-                <a href="{{ route('CreateCategory') }}">Categorias</a>    
+                <a href="{{ route('ListAllCategories') }}">Categorias</a>    
             </div>
-            <!-- 3 -->
+
             <div>
                 <img src="{{ asset('images/tag.png') }}" alt="">
-                <a href="{{ route('CreateTag') }}">Tags</a>        
+                <a href="{{ route('ListAllTags') }}">Tags</a>        
             </div>
-            <!-- 4 -->
+
             <div>
                 <img src="{{ asset('images/usuario.png') }}" alt="">
                 <a href="{{ route('ListAllUsers') }}">Usuários</a>
             </div>
-            <!-- 5 -->
+
             @auth
                 <div>
                     <img src="{{ asset('images/botao-de-login.png') }}" alt="">
@@ -65,7 +70,7 @@
         @yield('content')
     </main>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
         <div class="waves">
         <div class="wave" id="wave1"></div>
         <div class="wave" id="wave2"></div>
@@ -95,7 +100,8 @@
             </li>
         </ul>
         <p>&copy;2024 Enrico, Márcio</p>
-    </footer>
+    </footer> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

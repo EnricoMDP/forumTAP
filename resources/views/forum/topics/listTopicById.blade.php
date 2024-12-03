@@ -19,7 +19,7 @@
                             <button class="btn btn-link text-warning p-0" onclick="toggleEditForm('{{$comment->id}}')">Edit</button>
 
                             <!-- Formulário para excluir comentário -->
-                            <form action="{{ route('deleteComment', $comment->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('DeleteComment', $comment->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-link text-danger p-0">Delete</button>
@@ -34,12 +34,23 @@
                                 <div class="card-body">
                                     <p>{{ $reply->content }}</p>
                                 </div>
+                                <div>
+                                    <!-- Botão para abrir formulário de edição -->
+                                    <button class="btn btn-link text-warning p-0" onclick="toggleEditForm('{{$comment->id}}')">Edit</button>
+
+                                    <!-- Formulário para excluir comentário -->
+                                    <form action="{{ route('DeleteComment', $comment->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link text-danger p-0">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         @endforeach
                     </div>
 
                     <!-- Formulário para responder -->
-                    <form action="{{ route('createComment') }}" method="POST" class="mt-3">
+                    <form action="{{ route('CreateComment') }}" method="POST" class="mt-3">
                         @csrf
                         <input type="hidden" name="commentable_id" value="{{ $comment->id }}">
                         <input type="hidden" name="commentable_type" value="App\Models\Comment">
@@ -54,7 +65,7 @@
     </div>
 
     <!-- Formulário para adicionar comentário -->
-    <form action="{{ route('createComment') }}" method="POST" class="mt-5">
+    <form action="{{ route('CreateComment') }}" method="POST" class="mt-5">
         @csrf
         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
         <input type="hidden" name="post_id" value="{{ $post->id }}">

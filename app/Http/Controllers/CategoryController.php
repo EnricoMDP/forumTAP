@@ -10,30 +10,29 @@ use Illuminate\Support\Facades\Hash;
 
 class CategoryController extends Controller
 {
-    public function viewCategories() {
+    public function listAllCategories() {
         $categories = Category::all(); // Busca todos os usuários
-        return view('forum.categories.viewCategories', ['categories' => $categories]); // Retorna a view com os dados dos usuários
+        return view('forum.categories.listAllCategories', ['categories' => $categories]); // Retorna a view com os dados dos usuários
     }
 
-    public function listByTitle(Request $request,$title) {
-        $category = Category::where('title', $title)->first();
-        return view('forum.categories.editCategories', ['category' => $category]);
-        // return view('categories.find');
-    }
+    // public function listByTitle(Request $request,$title) {
+    //     $category = Category::where('title', $title)->first();
+    //     return view('forum.categories.editCategories', ['category' => $category]);
+    // }
 
     public function updateCategory(Request $request, $id) {
         $category = Category::where('id', $id)->first();
         $category->title = $request-> title;
         $category->description = $request-> description;
         $category->save();
-        return redirect()->route('viewCategories', [$category->id])
+        return redirect()->route('ListAllCategories', [$category->id])
             ->with('message', 'Atualizado com sucesso!');
     }
 
     
     public function createCategory(Request $request) {
         if ($request->isMethod('GET')) {
-            return view('forum.categories.create');
+            return view('forum.categories.createCategory');
         } else {
             $request->validate([
                 'title' => 'required|string|max:255|unique:categories',
@@ -48,18 +47,19 @@ class CategoryController extends Controller
 
             Auth::login(Auth::user());
 
-            return redirect()->route('viewCategories');
+            return redirect()->route('ListAllCategories');
         }
     }
 
-    public function editCategory() {
-        return view('categories.edit');
+    public function editCategory($id) {
+        $category = Category::findOrFail($id);
+        return view('forum.categories.editCategory', ['category' => $category]);
     }
 
     public function deleteCategory(Request $request, $id)
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('viewCategories')->with('success', 'category deleted successfully');
+        return redirect()->route('ListAllCategories')->with('success', 'category deleted successfully');
     }
 }

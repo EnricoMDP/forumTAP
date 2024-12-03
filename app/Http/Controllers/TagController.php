@@ -14,25 +14,18 @@ class TagController extends Controller
     public function listAllTags()
     {
         $tags = Tag::all();
-        return view('forum.tags.viewTags', ['tags' => $tags]);
+        return view('forum.tags.listAllTags', ['tags' => $tags]);
     }
 
-    // public function listTagById($id)
-    // {
-    //     $tag = Tag::findOrFail($id);
-    //     return view('tags.listTagById', ['tag' => $tag]);
+    // public function listTagByTitle(Request $request,$title) {
+    //     $tag = Tag::where('title', $title)->first();
+    //     return view('forum.tags', ['tag' => $tag]);
     // }
-
-    public function listTagByTitle(Request $request,$title) {
-        $tag = Tag::where('title', $title)->first();
-        return view('forum.tags.editTags', ['tag' => $tag]);
-        // return view('categories.find');
-    }
 
     public function createTag(Request $request)
     {
         if ($request->isMethod('GET')) {
-            return view('forum.tags.create');
+            return view('forum.tags.createTag');
         }
         else{
             $request->validate([
@@ -46,13 +39,13 @@ class TagController extends Controller
 
         Auth::login(Auth::user());
 
-        return redirect()->route('viewTags')->with('success', 'Tag created successfully');
+        return redirect()->route('ListAllTags')->with('success', 'Tag created successfully');
     }
 
     public function editTag($id)
     {
         $tag = Tag::findOrFail($id);
-        return view('tags.editTag', ['tag' => $tag]);
+        return view('forum.tags.editTag', ['tag' => $tag]);
     }
 
     public function updateTag(Request $request, $id)
@@ -60,7 +53,7 @@ class TagController extends Controller
         $tag = Tag::where('id', $id)->first();
         $tag->title = $request-> title;
         $tag->save();
-        return redirect()->route('viewTags', [$tag->id])
+        return redirect()->route('ListAllTags', [$tag->id])
             ->with('message', 'Atualizado com sucesso!');
     }
 
@@ -69,6 +62,6 @@ class TagController extends Controller
         $tag = Tag::findOrFail($id);
         $tag->delete();
 
-        return redirect()->route('viewTags')->with('success', 'Tag deleted successfully');
+        return redirect()->route('ListAllTags')->with('success', 'Tag deleted successfully');
     }
 }

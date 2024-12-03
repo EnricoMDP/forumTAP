@@ -33,32 +33,33 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{id}/delete', [UserController::class, 'deleteUser'])->name('DeleteUser');
 
     //Categorias
-    Route::get('/categories', [CategoryController::class, 'viewCategories'])->name('viewCategories');
     Route::match(['get', 'post'], '/createCategory', [CategoryController::class, 'createCategory'])->name('CreateCategory');
+    Route::get('/categories', [CategoryController::class, 'listAllCategories'])->name('ListAllCategories');
     Route::get('/categories/{id}', [CategoryController::class, 'listByTitle'])->name('listByTitle');
     Route::put('/categories/{id}/update', [CategoryController::class, 'updateCategory'])->name('UpdateCategory');
+    Route::get('/categories/{id}/edit', [CategoryController::class, 'editCategory'])->name('EditCategory');    
     Route::delete('/categories/{id}/delete', [CategoryController::class, 'deleteCategory'])->name('DeleteCategory');
 
     //Tags
-    Route::get('/tags', [TagController::class, 'listAllTags'])->name('ViewTags');
     Route::match(['get', 'post'], '/createTag', [TagController::class, 'createTag'])->name('CreateTag');
+    Route::get('/tags', [TagController::class, 'listAllTags'])->name('ListAllTags');
     Route::get('/tags/{id}', [TagController::class, 'listTagByTitle'])->name('ListTagByTitle');
     Route::put('/tags/{id}/update', [TagController::class, 'UpdateTag'])->name('UpdateTag');
+    Route::get('/tags/{id}/edit', [TagController::class, 'editTag'])->name('EditTag');
     Route::delete('/tags/{id}/delete', [TagController::class, 'DeleteTag'])->name('DeleteTag');
 
     //Tópicos
-    
+    Route::match(['get', 'post'],'/createTopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
     Route::get('/topics', [TopicController::class, 'listAllTopics'])->name('ListAllTopics');
     Route::get('/topics/{id}', [TopicController::class, 'listTopicById'])->name('ListTopicById');
-    Route::match(['get', 'post'],'/createTopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
     Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('UpdateTopic');
     Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('EditTopic');
     Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
 
     //Comentários
+    Route::post('/comments/create', [CommentController::class, 'createComment'])->name('CreateComment');
     Route::get('/comments', [CommentController::class, 'listAllComments'])->name('ListAllComments');
     Route::get('/comments/{id}', [CommentController::class, 'listCommentById'])->name('ListCommentById');
-    Route::post('/comments/create', [CommentController::class, 'createComment'])->name('CreateComment');
     Route::put('/comments/{id}/update', [CommentController::class, 'updateComment'])->name('UpdateComment');
     Route::get('/comments/{id}/edit', [CommentController::class, 'editComment'])->name('EditComment');
     Route::delete('/comments/{id}/delete', [CommentController::class, 'deleteComment'])->name('DeleteComment');

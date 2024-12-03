@@ -44,7 +44,7 @@
                     </div>
                     <br>
                 </div>
-                <div class="card-footer">
+                <!-- <div class="card-footer">
                     <h6>Comentários:</h6>
                     @foreach ($topic->comments as $comment)
                         <div class="comment">
@@ -62,12 +62,12 @@
                         <button type="submit" class="btn btn-success mt-2">Comentar</button>
                     </form>
                 </div>
-            </div>
+            </div> -->
         @endforeach
     </div>
 
     @if($topics->isEmpty())
-        <p class="text-center">No topics available. <a href="{{ route('createTopic') }}">Create one now</a>.</p>
+        <p class="text-center">No topics available. <a href="{{ route('CreateTopic') }}">Create one now</a>.</p>
     @endif
 </div>
 @endsection
