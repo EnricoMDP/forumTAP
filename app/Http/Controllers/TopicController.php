@@ -140,7 +140,7 @@
             $topic->tags()->detach();
             $topic->delete();
 
-            return redirect()->route('listAllTopics')->with('success', 'Topic deleted successfully');
+            return redirect()->route('Home')->with('success', 'Topic deleted successfully');
 
             
         }

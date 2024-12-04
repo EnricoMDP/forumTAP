@@ -116,5 +116,37 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Seleciona todos os botões de dropdown e menus
+            const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+            const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+            
+            // Adiciona evento de clique para cada botão
+            dropdownBtns.forEach((btn, index) => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Evita fechar ao clicar no botão
+
+                    // Fecha outros dropdowns antes de abrir o atual
+                    dropdownMenus.forEach((menu, i) => {
+                        if (i !== index) {
+                            menu.style.display = 'none';
+                        }
+                    });
+
+                    // Alterna a exibição do menu relacionado ao botão clicado
+                    const relatedMenu = dropdownMenus[index];
+                    relatedMenu.style.display = relatedMenu.style.display === 'block' ? 'none' : 'block';
+                });
+            });
+
+            // Fecha todos os dropdowns ao clicar fora
+            document.addEventListener('click', () => {
+                dropdownMenus.forEach((menu) => {
+                    menu.style.display = 'none';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

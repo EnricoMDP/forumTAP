@@ -2,17 +2,13 @@
 
 
 .footer {
-    position: absolute;
-    bottom: -1000;
-    margin-top: 300px;
+    margin-top: auto;
     width: 100%;
     background: #3586ff;
-    min-height: 100px;
+    min-height: 120px;        /* Garante espaço para as ondas */
     padding: 20px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    text-align: center;
+    position: relative;       /* Necessário para que as ondas sejam posicionadas corretamente */
 }
 
 .social-icon,
@@ -64,9 +60,9 @@
     font-weight: 300;
 }
 
+
 .wave {
     position: absolute;
-    top: -100px;
     left: 0;
     width: 100%;
     height: 100px;
@@ -75,40 +71,41 @@
 }
 
 .wave#wave1 {
+    top: -100px;              /* Ajuste para que a onda apareça no topo */
     z-index: 1000;
     opacity: 1;
-    bottom: 0;
     animation: animateWaves 4s linear infinite;
 }
 
 .wave#wave2 {
+    top: -90px;               /* Ajuste para camadas */
     z-index: 999;
     opacity: 0.5;
-    bottom: 10px;
     animation: animate 4s linear infinite !important;
 }
 
 .wave#wave3 {
+    top: -80px;               /* Ajuste para camadas */
     z-index: 1000;
     opacity: 0.2;
-    bottom: 15px;
     animation: animateWaves 3s linear infinite;
 }
 
 .wave#wave4 {
+    top: -70px;               /* Ajuste para camadas */
     z-index: 999;
     opacity: 0.7;
-    bottom: 20px;
     animation: animate 3s linear infinite;
 }
+
+
 
 @keyframes animateWaves {
     0% {
         background-position-x: 1000px;
     }
-
     100% {
-        background-positon-x: 0px;
+        background-position-x: 0px; /* Corrigido */
     }
 }
 
@@ -116,8 +113,7 @@
     0% {
         background-position-x: -1000px;
     }
-
     100% {
-        background-positon-x: 0px;
+        background-position-x: 0px; /* Corrigido */
     }
 }

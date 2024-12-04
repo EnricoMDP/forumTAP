@@ -4,7 +4,6 @@
 
 @if($topics != null)
     @foreach($topics as $topic)
-        <a href="{{ route('ListTopicById', $topic->id) }}" class="text-decoration-none text-dark">
             <div class="posts_container">
                 <div class="post_autorInfo">
                     <div style="display: flex; align-items: center;">
@@ -13,7 +12,15 @@
                         <span>-</span>
                         <h3>{{$topic->created_at->format('H:i a')}}</h3>
                     </div>
-                    <button>...</button>
+                    <button class="dropdown-btn">...</button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-option">Editar</button>
+                        <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="dropdown-option">Delete</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="post_content">
@@ -28,15 +35,18 @@
                         <span>123</span>
                         <button>🠗</button>
                     </span>
-
-                    <span class="commentsContainer">
-                        <i class="far fa-comment"></i>
-                        <span>123</span>
-                    </span>
+                    <a href="{{ route('ListTopicById', $topic->id) }}" class="commentsContainer">
+                        <span class="">
+                            <i class="far fa-comment"></i>
+                            <span>123</span>
+                        </span>
+                    </a>
                 </div>
             </div>
-        </a>
     @endforeach
+<div class="inv"></div>
 @else
-<h1>Não existem tópicos no momento, seja o primeiro!</h1>
+    <div>
+        <h1>Não existem tópicos no momento, seja o primeiro!</h1>
+    </div>
 @endif
