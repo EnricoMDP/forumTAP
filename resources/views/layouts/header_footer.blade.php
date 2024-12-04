@@ -19,7 +19,13 @@
                 <p>Prody</p>
             </div>
         </div>
-        <input type="text" name="" id="searchBar">
+        <div class="nav-search">
+            <form action="{{ route('SearchTopics') }}" method="GET" class="search-wrapper">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" name="query" id="searchBar" placeholder="Search for topics">
+                <button type="submit" style="display: none;"></button>  
+            </form>
+        </div>
         <div class="user-container">
             <div class="topics">
                 <a href="{{ route('CreateTopic') }}">

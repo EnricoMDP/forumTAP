@@ -6,15 +6,17 @@
     @foreach($topics as $topic)
             <div class="posts_container">
                 <div class="post_autorInfo">
+                    @if($topic->post->user_id === Auth::id())
                     <div style="display: flex; align-items: center;">
                         <img src="./img/usuario.png" alt="" class="userProfilePic">
                         <h2>{{$topic->post->user->name}}</h2>
                         <span>-</span>
                         <h3>{{$topic->created_at->format('H:i a')}}</h3>
                     </div>
+                    @endif
                     <button class="dropdown-btn">...</button>
                     <div class="dropdown-menu">
-                        <button class="dropdown-option">Editar</button>
+                        <a href="{{ route('EditTopic', $topic->id) }}" class="dropdown-option">Editar</a>
                         <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')

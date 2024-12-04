@@ -34,7 +34,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3">No categories available.</td>
+                    <td colspan="4">No categories available.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -132,7 +132,7 @@
                 $topic->tags()->detach();
             }
 
-            return redirect()->route('listAllTopics')->with('success', 'Topic updated successfully');
+            return redirect()->route('ListAllTopics')->with('success', 'Topic updated successfully');
         }
 
         public function deleteTopic($id){
@@ -143,5 +143,18 @@
             return redirect()->route('Home')->with('success', 'Topic deleted successfully');
 
             
+        }
+
+        public function searchTopics(Request $request)
+        {
+            $query = $request->input('query');
+            $topics = Topic::where('title', 'like', '%' . $query . '%')
+                ->orWhere('description', 'like', '%' . $query . '%')
+                ->get();
+    
+            $categories = Category::all();
+            $tags = Tag::all();
+    
+            return view('users.home', compact('topics', 'categories', 'tags'));
         }
     }

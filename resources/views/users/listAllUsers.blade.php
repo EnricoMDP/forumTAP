@@ -54,4 +54,4 @@
     @if($users->isEmpty())
         <p class="text-center">No users found.</p>
     @endif
-</di
+</div>

@@ -49,12 +49,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/tags/{id}/delete', [TagController::class, 'DeleteTag'])->name('DeleteTag');
 
     //Tópicos
+    
     Route::match(['get', 'post'],'/createTopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
     Route::get('/topics', [TopicController::class, 'listAllTopics'])->name('ListAllTopics');
     Route::get('/topics/{id}', [TopicController::class, 'listTopicById'])->name('ListTopicById');
     Route::put('/topics/{id}/update', [TopicController::class, 'updateTopic'])->name('UpdateTopic');
     Route::get('/topics/{id}/edit', [TopicController::class, 'editTopic'])->name('EditTopic');
     Route::delete('/topics/{id}/delete', [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
+    Route::get('/search', [TopicController::class, 'searchTopics'])->name('SearchTopics');
 
     //Comentários
     Route::post('/comments/create', [CommentController::class, 'createComment'])->name('CreateComment');

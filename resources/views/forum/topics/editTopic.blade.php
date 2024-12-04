@@ -6,7 +6,7 @@
     
     <span>{{ session('message') }}</span>
     @if($topic != null)
-    <form action="{{ route('updateTopic', [$topic->id]) }}" method="POST" class="itemX">
+    <form action="{{ route('UpdateTopic', [$topic->id]) }}" method="POST" class="itemX">
         <h2 class="item2">Editar Topico</h2>
         @csrf
         @method('put')
@@ -44,7 +44,7 @@
         <input type="submit" class="item4 button" value="Enviar">
     </form>
 
-    <form action="{{ route('deleteTopic', [$topic->id]) }}" method="POST">
+    <form action="{{ route('DeleteTopic', [$topic->id]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="item4 button">Deletar</button>
