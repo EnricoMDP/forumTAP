@@ -76,55 +76,42 @@
                 <span>123</span>
                 <button>🠗</button>
             </span>
-            <a href="" class="commentsContainer">
-                <span>
-                </span>V<span>
-                </span>123</span>
-                <span>
-            </a>
         </div>
+        @foreach ($comment->replies as $reply)
+            <div class="replies_container">
+                <div class="post_autorInfo">
+                    <div style="display: flex; align-items: center;">
+                        <img src="../main/img/usuario.png" alt="" class="userProfilePic">
+                        <h2>{{ $comment->user->name ?? 'Anonymous' }}</h2>
+                        <span>-</span>
+                        <h3>12 horas atrás</h3>
+                    </div>
+                    <button class="dropdown-btn">...</button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
+    
+                        <form action="{{ route('DeleteComment', $reply->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="dropdown-option">Delete</button>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="post_content">
+                    <p>{{ $reply->content }}</p>
+                </div>
+    
+                <div class="post_info">
+                    <span class="likesContainer">
+                        <button>🠕</button>
+                        <span>123</span>
+                        <button>🠗</button>
+                    </span>
+                </div>
+            </div>
+        @endforeach
     </div>
-
-    @foreach ($comment->replies as $reply)
-        <div class="comments_container">
-            <div class="post_autorInfo">
-                <div style="display: flex; align-items: center;">
-                    <img src="../main/img/usuario.png" alt="" class="userProfilePic">
-                    <h2>{{ $comment->user->name ?? 'Anonymous' }}</h2>
-                    <span>-</span>
-                    <h3>12 horas atrás</h3>
-                </div>
-                <button class="dropdown-btn">...</button>
-                <div class="dropdown-menu">
-                    <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
-
-                    <form action="{{ route('DeleteComment', $reply->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="dropdown-option">Delete</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="post_content">
-                <p>{{ $reply->content }}</p>
-            </div>
-
-            <div class="post_info">
-                <span class="likesContainer">
-                    <button>🠕</button>
-                    <span>123</span>
-                    <button>🠗</button>
-                </span>
-                <a href="" class="commentsContainer">
-                    <span>
-                    </span>V<span>
-                    </span>123</span>
-                    <span>
-                </a>
-            </div>
-        </div>
-    @endforeach
     <form action="{{ route('CreateComment') }}" method="POST" class="mt-3">
         @csrf
         <input type="hidden" name="commentable_id" value="{{ $comment->id }}">
@@ -134,6 +121,7 @@
         <input type="text" name="content" id="searchBarPost" placeholder="Write a reply">
         <button type="submit" class="btn btn-primary btn-sm">Reply</button>
     </form>
+
 @endforeach
 <div class="inv"></div>
 

@@ -8,7 +8,7 @@
                 <div class="post_autorInfo">
                     @if($topic->post->user_id === Auth::id())
                     <div style="display: flex; align-items: center;">
-                        <img src="./img/usuario.png" alt="" class="userProfilePic">
+                        <img src="{{ asset('images/usuario.png') }}" alt="" class="userProfilePic">
                         <h2>{{$topic->post->user->name}}</h2>
                         <span>-</span>
                         <h3>{{$topic->created_at->format('H:i a')}}</h3>
@@ -28,7 +28,7 @@
                 <div class="post_content">
                     <h1>{{$topic -> title}}</h1>
                     <p>{{$topic -> description}}</p>
-                    <img src="./img/Screenshot_5.png" alt="">
+                    <img src="{{ asset('images/kikano.png') }}" alt="">
                 </div>
 
                 <div class="post_info">
