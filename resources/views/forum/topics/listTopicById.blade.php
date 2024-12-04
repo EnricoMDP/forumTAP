@@ -8,7 +8,7 @@
     <!-- Comentários -->
     <h3 class="mt-5">Comments</h3>
     <div class="mt-3">
-        @foreach ($topic->comments as $comment)
+        @foreach ($topic->comments->where('commentable_type', 'App\Models\Post') as $comment)
             <div class="card mb-3">
                 <div class="card-body">
                     <p>{{ $comment->content }}</p>
