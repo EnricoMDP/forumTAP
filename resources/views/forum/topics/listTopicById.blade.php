@@ -57,10 +57,10 @@
                 <span>-</span>
                 <h3>{{$topic->created_at->format('H:i a')}}</h3>
             </div>
-            @if(auth()->check() && (auth()->user()->name === $topic->post->user->name || auth()->user()->name === 'admin'))
+            @if(auth()->check() && (auth()->user()->name === $comment->user->name || auth()->user()->name === 'admin'))
                 <button class="dropdown-btn">...</button>
                 <div class="dropdown-menu">
-                    @if(auth()->check() && (auth()->user()->name === $topic->post->user->name))
+                    @if(auth()->check() && (auth()->user()->name === $comment->user->name))
                         <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
                     @endif
                     <form action="{{ route('DeleteComment', $comment->id, $topic->id) }}" method="POST" style="display:inline;">
@@ -93,10 +93,10 @@
                         <h3>{{$topic->created_at->format('H:i a')}}</h3>
                     </div>
 
-                    @if(auth()->check() && (auth()->user()->name === $topic->post->user->name || auth()->user()->name === 'admin'))
+                    @if(auth()->check() && (auth()->user()->name === $comment->user->name || auth()->user()->name === 'admin'))
                         <button class="dropdown-btn">...</button>
                         <div class="dropdown-menu">
-                            @if(auth()->check() && (auth()->user()->name === $topic->post->user->name))
+                            @if(auth()->check() && (auth()->user()->name === $comment->user->name))
                                 <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
                             @endif
                             <form action="{{ route('DeleteComment', $reply->id) }}" method="POST" style="display:inline;">
