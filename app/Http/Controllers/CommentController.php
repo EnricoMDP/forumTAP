@@ -9,19 +9,6 @@ use App\Models\Topic;
 
 class CommentController extends Controller
 {
-    public function listAllComments()
-    {
-        $comments = Comment::all();
-        $topics = Topic::all();
-        return view('comments.listAllComments', compact('comments', 'topics'));
-    }
-
-    public function listCommentById($id)
-    {
-        $comment = Comment::findOrFail($id);
-        return view('comments.listCommentById', compact('comment'));
-    }
-
     public function createComment(Request $request)
     {
         $validatedData = $request->validate([
@@ -77,14 +64,13 @@ class CommentController extends Controller
             ]);
         }
 
-        return redirect()->route('ListAllComments')->with('success', 'Comment updated successfully.');
+        return redirect()->back();
     }
 
     public function deleteComment($id)
     {
         $comment = Comment::findOrFail($id);
         $comment->delete();
-        
-        return redirect()->route('ListAllTopics')->with('success', 'Comment deleted successfully.');
+        return redirect()->back();
     }
 }

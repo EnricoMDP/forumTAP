@@ -44,25 +44,7 @@
                     </div>
                     <br>
                 </div>
-                <!-- <div class="card-footer">
-                    <h6>Comentários:</h6>
-                    @foreach ($topic->comments as $comment)
-                        <div class="comment">
-                            <p><strong>{{  $comment->post->user->name ?? 'Usuário desconhecido' }}</strong> disse:</p>
-                        <p>{{ $comment->content }}</p>
-                        <p class="text-sm text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
-                        </div>
-                    @endforeach
-
-                    <form action="{{ route('CreateComment', ['topicId' => $topic->id]) }}" method="POST" class="mt-3">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="content" class="form-control" rows="2" placeholder="Adicionar um comentário" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-success mt-2">Comentar</button>
-                    </form>
-                </div>
-            </div> -->
+            </div>
         @endforeach
     </div>
 

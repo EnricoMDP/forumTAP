@@ -47,27 +47,24 @@
 
     <div class="navbarMain">
         <div class="menuHeader">
-            <!-- 1 -->
             <div>
                 <ion-icon name="home-outline"></ion-icon>
                 <a href="{{ route('Home') }}">Home</a>
             </div>
-            <!-- 2 -->
-            <div>
-                <ion-icon name="apps-outline"></ion-icon>
-                <a href="{{ route('ListAllCategories') }}">Categorias</a>    
-            </div>
-            <!-- 3  -->
-            <div>
-                <ion-icon name="pricetags-outline"></ion-icon>
-                <a href="{{ route('ListAllTags') }}">Tags</a>        
-            </div>
-            <!-- 4 -->
-            <div>
-                <ion-icon name="people-outline"></ion-icon>
-                <a href="{{ route('ListAllUsers') }}">Usuários</a>
-            </div>
-            <!-- 5 -->
+            @if(auth()->check() && (auth()->user()->name === 'admin'))
+                <div>
+                    <ion-icon name="apps-outline"></ion-icon>
+                    <a href="{{ route('ListAllCategories') }}">Categorias</a>    
+                </div>
+                <div>
+                    <ion-icon name="pricetags-outline"></ion-icon>
+                    <a href="{{ route('ListAllTags') }}">Tags</a>        
+                </div>
+                <div>
+                    <ion-icon name="people-outline"></ion-icon>
+                    <a href="{{ route('ListAllUsers') }}">Usuários</a>
+                </div>
+            @endif
             @auth
                 <div>
                     <ion-icon name="log-in-outline"></ion-icon>

@@ -5,15 +5,23 @@
     <div class="post_autorInfo">
         <div style="display: flex; align-items: center;">
             <img src="../main/img/usuario.png" alt="" class="userProfilePic">
-            <h2>Enriquinho123</h2>
+            <h2>{{$topic->post->user->name}}</h2>
             <span>-</span>
-            <h3>12 horas atrás</h3>
+            <h3>{{$topic->created_at->format('H:i a')}}</h3>
         </div>
-        <button class="dropdown-btn">...</button>
-        <div class="dropdown-menu">
-            <button class="dropdown-option">Editar</button>
-            <button class="dropdown-option">Excluir</button>
-        </div>
+        @if(auth()->check() && (auth()->user()->name === $topic->post->user->name || auth()->user()->name === 'admin'))
+            <button class="dropdown-btn">...</button>
+            <div class="dropdown-menu">
+                @if(auth()->check() && (auth()->user()->name === $topic->post->user->name))
+                    <a href="{{ route('EditTopic', $topic->id) }}" class="dropdown-option">Editar</a>
+                @endif
+                <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="dropdown-option">Delete</button>
+                </form>
+            </div>
+        @endif
     </div>
 
     <div class="post_content">
@@ -28,12 +36,6 @@
             <span>123</span>
             <button>🠗</button>
         </span>
-        <a href="" class="commentsContainer">
-            <span>
-            </span>V<span>
-            </span>123</span>
-            <span>
-        </a>
     </div>
 </div>
 
@@ -53,17 +55,21 @@
                 <img src="../main/img/usuario.png" alt="" class="userProfilePic">
                 <h2>{{ $comment->user->name ?? 'Anonymous' }}</h2>
                 <span>-</span>
-                <h3>12 horas atrás</h3>
+                <h3>{{$topic->created_at->format('H:i a')}}</h3>
             </div>
-            <button class="dropdown-btn">...</button>
-            <div class="dropdown-menu">
-                <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
-                <form action="{{ route('DeleteComment', $comment->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="dropdown-option">Delete</button>
-                </form>
-            </div>
+            @if(auth()->check() && (auth()->user()->name === $topic->post->user->name || auth()->user()->name === 'admin'))
+                <button class="dropdown-btn">...</button>
+                <div class="dropdown-menu">
+                    @if(auth()->check() && (auth()->user()->name === $topic->post->user->name))
+                        <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
+                    @endif
+                    <form action="{{ route('DeleteComment', $comment->id, $topic->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="dropdown-option">Delete</button>
+                    </form>
+                </div>
+            @endif
         </div>
 
         <div class="post_content">
@@ -84,18 +90,22 @@
                         <img src="../main/img/usuario.png" alt="" class="userProfilePic">
                         <h2>{{ $comment->user->name ?? 'Anonymous' }}</h2>
                         <span>-</span>
-                        <h3>12 horas atrás</h3>
+                        <h3>{{$topic->created_at->format('H:i a')}}</h3>
                     </div>
-                    <button class="dropdown-btn">...</button>
-                    <div class="dropdown-menu">
-                        <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
-    
-                        <form action="{{ route('DeleteComment', $reply->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="dropdown-option">Delete</button>
-                        </form>
-                    </div>
+
+                    @if(auth()->check() && (auth()->user()->name === $topic->post->user->name || auth()->user()->name === 'admin'))
+                        <button class="dropdown-btn">...</button>
+                        <div class="dropdown-menu">
+                            @if(auth()->check() && (auth()->user()->name === $topic->post->user->name))
+                                <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
+                            @endif
+                            <form action="{{ route('DeleteComment', $reply->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="dropdown-option">Delete</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
     
                 <div class="post_content">

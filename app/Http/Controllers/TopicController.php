@@ -6,10 +6,9 @@
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Hash;
     use App\Models\Topic;
-    use App\Models\Post;
     use App\Models\Tag;
     use App\Models\Category;
-    use App\Models\Comment;
+
 
     class TopicController extends Controller
     {
@@ -64,11 +63,6 @@
             if ($request->filled('tags')) {
                 $topic->tags()->sync($request->tags);
             }
-
-            $post = $topic->post()->create([
-                'user_id' => auth()->id(),
-                'image' => $request->image ?? '',
-            ]);
             
             Auth::login(Auth::user());
 
@@ -85,7 +79,6 @@
         }
 
         public function store(Request $request){
-            $userId = Auth::id();
 
             $request->validate([
                 'title' => 'required|string',
