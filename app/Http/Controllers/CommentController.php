@@ -24,14 +24,6 @@ class CommentController extends Controller
         $comment->user_id = auth()->id();
         $comment->topic_id = $validatedData['topic_id'];
 
-        // if($request->commentable_id){
-        //     $isValidCommentable = Comment::where('id', $request->commmentable_id)->exists() || Post::where('id', $request->post_id)->exists();
-
-        //     if(!$isValidCommentable){
-        //         return redirect()->back()->withErrors(['commentable_id' => 'ta invalido essa porra']);
-        //     }
-        // }
-
         if (!empty($validatedData['commentable_id'])) {
             $comment->commentable_id = $validatedData['commentable_id'];
             $comment->commentable_type = Comment::class;
@@ -45,6 +37,14 @@ class CommentController extends Controller
         return redirect()->back()->with('success', 'Comentário adicionado com sucesso.');
     }
 
+    public function editComment($id)
+    {
+        $comment = Comment::findOrFail($id);
+        $topic = Topic::find($comment->topic_id);
+        return view('forum.topics.editComment', ['topic' => $topic, 'comment' => $comment]);
+    }
+    
+    
     public function updateComment(Request $request, $id)
     {
         $request->validate([
@@ -64,7 +64,9 @@ class CommentController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        $topicId = $comment->topic_id;
+
+        return redirect()->route('ListTopicById', $topicId)->with('success', 'Comentário atualizado com sucesso.');
     }
 
     public function deleteComment($id)

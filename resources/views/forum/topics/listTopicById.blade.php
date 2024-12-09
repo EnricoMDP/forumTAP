@@ -13,7 +13,7 @@
             <button class="dropdown-btn">...</button>
             <div class="dropdown-menu">
                 @if(auth()->check() && (auth()->user()->name === $topic->post->user->name))
-                    <a href="{{ route('EditTopic', $topic->id) }}" class="dropdown-option">Editar</a>
+                    <a href="{{ route('EditTopic', $topic->id) }}" class="dropdown-option" style="text-decoration:none;">Editar</a>
                 @endif
                 <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" style="display:inline;">
                     @csrf
@@ -61,7 +61,7 @@
                 <button class="dropdown-btn">...</button>
                 <div class="dropdown-menu">
                     @if(auth()->check() && (auth()->user()->name === $comment->user->name))
-                        <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
+                        <a href="{{ route('EditComment', $comment->id, $topic->id) }}" class="dropdown-option" style="text-decoration:none;">Editar</a>
                     @endif
                     <form action="{{ route('DeleteComment', $comment->id, $topic->id) }}" method="POST" style="display:inline;">
                         @csrf
@@ -97,7 +97,7 @@
                         <button class="dropdown-btn">...</button>
                         <div class="dropdown-menu">
                             @if(auth()->check() && (auth()->user()->name === $comment->user->name))
-                                <button class="dropdown-option" onclick="toggleEditForm('{{$comment->id}}')">Editar</button>
+                                <a href="{{ route('EditComment', $reply->id) }}" class="dropdown-option" style="text-decoration:none;">Editar</a>
                             @endif
                             <form action="{{ route('DeleteComment', $reply->id) }}" method="POST" style="display:inline;">
                                 @csrf
@@ -126,7 +126,6 @@
         @csrf
         <input type="hidden" name="commentable_id" value="{{ $comment->id }}">
         <input type="hidden" name="commentable_type" value="App\Models\Comment">
-        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
         <input type="text" name="content" id="searchBarPost" placeholder="Write a reply">
         <button type="submit" class="btn btn-primary btn-sm">Reply</button>
